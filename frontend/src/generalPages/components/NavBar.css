@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.logo-section {
+    text-align: center;
+    position: relative;
+}
+
+.logo {
+    width: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translate(0, -50%);
+}
+
+.navbar-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    height: 60px;
+    align-items: center;
+}
+
+.navbar-main {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    background-color: lightblue;
+}
+
+.navbar-link {
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-link > * {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+}

@@ -1,0 +1,38 @@
+.activity-item-block {
+    width: 70%;
+    background-color: #e8fcff;
+    border-radius: 20px;
+    margin: 30px auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    padding: 15px;
+}
+
+.activity-item-block * {
+    font-family: Arial, sans-serif;
+}
+
+.activityName {
+    padding-bottom: 7px;
+}
+
+.activityOrg, .activityDur, .activityLoc{
+    color: gray;
+}
+
+.activityOrg {
+    padding-bottom: 10px;
+}
+
+.activityDesc {
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.activityLink {
+    display: inline-block;
+    padding-top: 20px;
+    font-weight: bold;
+    color: gray;
+}

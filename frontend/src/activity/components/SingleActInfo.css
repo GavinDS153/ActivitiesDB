@@ -1,0 +1,10 @@
+.singleActBlock {
+    width: 70%;
+    border-radius: 20px;
+    margin: 60px auto;
+}
+
+.actName {
+    font-size: 80px;
+}
+
