@@ -18,10 +18,13 @@ const NavBar = () => {
                 <div className="navbar-link">
                     <Link to="/about">About</Link>
                 </div>
+                <div className="navbar-link">
+                    <Link to="/profile">Profile</Link>
+                </div>
             </span>
             <div className="navbar-links">
-                <Link to="/auth" className="auth-link">Sign Up</Link>
-                <Link to="/auth" className="auth-link">Log In</Link>
+                <Link to="/auth/signup" className="auth-link">Sign Up</Link>
+                <Link to="/auth/login" className="auth-link">Log In</Link>
             </div>
         </div>
     </span>)

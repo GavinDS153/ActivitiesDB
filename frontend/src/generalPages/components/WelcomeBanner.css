@@ -1,0 +1,20 @@
+.welcome-bg {
+    width: 100%;
+    height: 300px;
+    background-color: rgb(237, 237, 237);
+    display: flex;
+    justify-content: center;
+}
+
+.welcome-subbox {
+    width: fit-content;
+    height: fit-content;
+    padding: 40px;
+    background-color: white;
+    align-content: center;
+    margin-top: 50px;
+    border-radius: 7px;
+    border-color: black;
+    border-width: 3px;
+    border-style: solid;
+}
