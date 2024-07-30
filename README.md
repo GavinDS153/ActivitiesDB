@@ -64,7 +64,7 @@ Currently, the page is **extremely** rough. As you can see, saved activities are
 <br />
 <br />
 
-Besides the ability to click on each activity to open it up and get more info, that is all the features I have implemented for ActiviitiesDB. This project has taught me a lot about web development and I am sure I will continue to learn even more as I add more features and styling!
+Besides an about page and the ability to click on each activity to open it up and get more info, that is all the features I have implemented for ActiviitiesDB. This project has taught me a lot about web development and I am sure I will continue to learn even more as I add more features and styling!
 
 I look forward to developing ActivitiesDB further and one day releasing the website to the public.
 ## Thank you for taking the time to learn about my project!
