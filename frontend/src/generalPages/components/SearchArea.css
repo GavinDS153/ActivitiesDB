@@ -1,0 +1,33 @@
+.search-area {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: lightblue;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchInput {
+    height: 40px;
+    width: 50%;
+    border-radius: 6px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    margin-right: 30px;
+}
+
+.searchButton {
+    height: 40px;
+    width: 90px;
+    border-radius: 6px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}

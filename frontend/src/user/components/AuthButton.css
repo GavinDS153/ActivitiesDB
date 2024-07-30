@@ -1,0 +1,15 @@
+.auth-button {
+    width: 30%;
+    color: black;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    margin: 10px auto;
+    display: block;
+}

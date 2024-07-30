@@ -1,0 +1,18 @@
+.tag-name {
+    display: inline;
+}
+
+.tag-checkbox {
+    display: inline;
+    margin-left: 10px;
+}
+
+.tag-box {
+    padding: 10px;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    background-color: white;
+    margin-bottom: 20px;
+}

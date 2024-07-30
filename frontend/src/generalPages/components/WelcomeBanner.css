@@ -1,0 +1,53 @@
+.welcome-bg {
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(237, 237, 237);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-subbox {
+    width: 80%;
+    height: fit-content;
+    background-color: white;
+    border-radius: 7px;
+    border-color: black;
+    border-width: 3px;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.welcome-subbox * {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.welcome-intro p {
+    font-style: italic;
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.welcome-intro h1 {
+    font-size: 50px;
+}
+
+.welcome-intro {
+    width: fit-content;
+    margin: 30px 0;
+}
+
+.welcome-desc {
+    width: 50%;
+    height: auto;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.welcome-desc {
+    line-height: 30px;
+}
