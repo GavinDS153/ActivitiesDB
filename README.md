@@ -57,14 +57,14 @@ Only logged in users can save activities. Saved activities are saved to the user
 <br />
 
 ![ProfilePage](https://github.com/user-attachments/assets/4b4f0cb1-1498-4207-82e4-187cf35c9343)
->_Part of the profile page. Currently, the page is **extremely** rough. Saved activities are shown._
+>_Part of the profile page._
 
-Only logged in users can save activities. Saved activities are saved to the user's document in the database. In the future, I am going to make the save button a heart rather than a plain button.
+Currently, the page is **extremely** rough. As you can see, saved activities are displayed on the profile page.
 
 <br />
 <br />
 
-Besides the ability to click on each activity to open it up and get more info, that is all the features I have implemented for ActiviitiesDB. This project has taught me a lot about web development and I am sure I will continue to learn even more as I add more features and styling.
+Besides the ability to click on each activity to open it up and get more info, that is all the features I have implemented for ActiviitiesDB. This project has taught me a lot about web development and I am sure I will continue to learn even more as I add more features and styling!
 
 I look forward to developing ActivitiesDB further and one day releasing the website to the public.
 ## Thank you for taking the time to learn about my project!
