@@ -1,7 +1,7 @@
 # ActivitiesDB
 ### Your personal online guidance counselor
 
-ActivitiesDB is a website I am building to help high school students find educational oppurtunities. Users can browse our database of activities and save them to their account. To help users find the most relevant, I have implemented a tag filter feature.
+ActivitiesDB is a website I am building to help high school students find educational oppurtunities. Users can browse our database of activities and save them to their account. To help users find the most relevant activities, I have implemented a tag filter feature.
 
 The following are screenshots of the website in its current form. There is still a lot of work to do, including adding more features and drastically updating the UI. I hope to one day release the website to the public.
 <br />
