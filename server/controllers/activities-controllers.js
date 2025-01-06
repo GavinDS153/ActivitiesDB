@@ -4,22 +4,33 @@ const mongoose = require("mongoose");
 
 const User = require("../models/user");
 const Tag = require("../models/tag");
+const UserSavedAct = require("../models/userSavedAct");
+const userSavedAct = require("../models/userSavedAct");
 
 const getActivities = async (req, res, next) => {
   let activities;
+  let queryObj = {};
   try {
     const tagNames = req.query.tags
       ? decodeURIComponent(req.query.tags).split(",")
       : [];
+
+    const pageNum = req.query.page || 1;
+    const limit = req.query.limit || 0;
+    const searchTerm = req.query.search || "";
+
     if (tagNames.length) {
       const tags = await Tag.find({ name: { $in: tagNames } });
       const tagIds = tags.map((tag) => tag._id);
-      activities = await Activity.find({ tags: { $all: tagIds } }).populate(
-        "tags"
-      );
-    } else {
-      activities = await Activity.find().populate("tags");
+      queryObj = { ...queryObj, tags: { $all: tagIds } };
     }
+
+    queryObj = { ...queryObj, name: { $regex: searchTerm, $options: `i` } };
+
+    activities = await Activity.find(queryObj)
+      .skip((pageNum - 1) * limit)
+      .limit(limit)
+      .populate("tags");
   } catch (err) {
     const error = new HttpError(
       "Could not fetch activities. Please try again later",
@@ -83,28 +94,9 @@ const createActivity = async (req, res, next) => {
   res.status(201).json({ activity: createdActivity });
 };
 
-const saveActivity = async (req, res, next) => {
+const toggleSaveActivity = async (req, res, next) => {
   // Identifies activity that needs to be saved
   const activityID = req.params.aid;
-
-  let activity;
-  try {
-    activity = await Activity.findById(activityID);
-  } catch (err) {
-    // Runs if something is actually wrong with the request like a missing field
-    const error = new HttpError(
-      "Something went wrong, could not find an activity",
-      500
-    );
-    return next(error);
-  }
-
-  if (!activity) {
-    // Runs if the request could not find a matching ID
-    return next(
-      new HttpError("Could not find a place with the provided ID!", 404)
-    );
-  }
 
   // Identifies user that needs the activity to be saved to
   const token = req.headers.authorization.split(" ")[1];
@@ -123,14 +115,30 @@ const saveActivity = async (req, res, next) => {
     return next(error);
   }
 
+  let activityExist;
+  try {
+    activityExist = await UserSavedAct.findOne({
+      a_id: activityID,
+      u_id: req.userData.userID,
+    });
+  } catch (err) {
+    const error = new HttpError(
+      "Could not check activity. Please try again later",
+      500
+    );
+    return next(error);
+  }
+
   // Saves selected activity to logged in user
-  if (user.activities.indexOf(new mongoose.Types.ObjectId(activityID)) == -1) {
+  if (!activityExist) {
     try {
-      const sess = await mongoose.startSession();
-      sess.startTransaction();
-      user.activities.push(activity);
-      await user.save({ session: sess });
-      await sess.commitTransaction();
+      // Creates saved activity document and saves it to the db
+      const savedAct = new UserSavedAct({
+        u_id: req.userData.userID,
+        a_id: activityID,
+      });
+      await savedAct.save();
+
       res.json({ saved: true });
     } catch (err) {
       const error = new HttpError("Saving place failed, please try again", 500);
@@ -138,14 +146,11 @@ const saveActivity = async (req, res, next) => {
     }
   } else {
     try {
-      const sess = await mongoose.startSession();
-      sess.startTransaction();
-      const index = user.activities.indexOf(
-        new mongoose.Types.ObjectId(activityID)
-      );
-      user.activities.splice(index, 1);
-      await user.save({ session: sess });
-      await sess.commitTransaction();
+      const result = await UserSavedAct.deleteOne({
+        a_id: activityID,
+        u_id: req.userData.userID,
+      });
+
       res.json({ saved: false });
     } catch (err) {
       const error = new HttpError(
@@ -160,4 +165,4 @@ const saveActivity = async (req, res, next) => {
 exports.getActivityByID = getActivityByID;
 exports.createActivity = createActivity;
 exports.getActivities = getActivities;
-exports.saveActivity = saveActivity;
+exports.toggleSaveActivity = toggleSaveActivity;

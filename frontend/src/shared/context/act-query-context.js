@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export const TagsContext = createContext({
+export const ActQueryContext = createContext({
   tagsList: [],
   setTagsList: () => {},
 });

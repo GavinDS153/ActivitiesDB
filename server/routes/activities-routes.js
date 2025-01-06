@@ -12,7 +12,7 @@ router.get("/", activitiesControllers.getActivities);
 
 router.post("/", activitiesControllers.createActivity);
 
-router.patch("/save/:aid", checkAuth, activitiesControllers.saveActivity);
+router.patch("/save/:aid", checkAuth, activitiesControllers.toggleSaveActivity);
 
 router.get("/saved/:aid", checkAuth, profileControllers.getActivitySaveStatus);
 

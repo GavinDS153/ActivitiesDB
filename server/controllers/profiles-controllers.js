@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Activity = require("../models/activity");
+const UserSavedAct = require("../models/userSavedAct");
 const HttpError = require("../models/http-error");
 const jwt = require("jsonwebtoken");
 
@@ -47,17 +48,34 @@ const getActivitiesByUserId = async (req, res, next) => {
     return next(error);
   }
 
-  // if (!places || places.length === 0) {
-  if (!user || user.activities.length === 0) {
+  let activityList;
+  try {
+    activityList = await UserSavedAct.find({ u_id: user._id });
+  } catch (err) {
+    const error = new HttpError(
+      "Fetching saved activities failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
+
+  if (!activityList) {
     return next(
-      new HttpError("Could not find places for the provided user id.", 404)
+      new HttpError("Could not find activities for the provided user id.", 404)
     );
   }
 
+  // if (!places || places.length === 0) {
+  // if (!user || user.activities.length === 0) {
+  //   return next(
+  //     new HttpError("Could not find places for the provided user id.", 404)
+  //   );
+  // }
+
   let fullActs = [];
 
-  for (let i = 0; i < user.activities.length; i++) {
-    const fullAct = await Activity.findById(user.activities[i]);
+  for (let i = 0; i < activityList.length; i++) {
+    const fullAct = await Activity.findById(activityList[i].a_id);
     fullActs.push(fullAct.toObject({ getters: true }));
   }
 
@@ -68,25 +86,6 @@ const getActivitiesByUserId = async (req, res, next) => {
 
 const getActivitySaveStatus = async (req, res, next) => {
   const activityID = req.params.aid;
-
-  let activity;
-  try {
-    activity = await Activity.findById(activityID);
-  } catch (err) {
-    // Runs if something is actually wrong with the request like a missing field
-    const error = new HttpError(
-      "Something went wrong, could not find an activity",
-      500
-    );
-    return next(error);
-  }
-
-  if (!activity) {
-    // Runs if the request could not find a matching ID
-    return next(
-      new HttpError("Could not find a place with the provided ID!", 404)
-    );
-  }
 
   const token = req.headers.authorization.split(" ")[1];
   if (!token) {
@@ -105,10 +104,31 @@ const getActivitySaveStatus = async (req, res, next) => {
     return next(error);
   }
 
-  if (user.activities.indexOf(new mongoose.Types.ObjectId(activityID)) == -1) {
+  if (!user) {
     res.json({ saved: false });
-  } else {
+    return next(
+      new HttpError("Could not find a user with the provided ID!", 404)
+    );
+  }
+
+  let userActEntry;
+  try {
+    userActEntry = await UserSavedAct.findOne({
+      u_id: user._id,
+      a_id: activityID,
+    });
+  } catch (err) {
+    const error = new HttpError(
+      "Fetching saved activity failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
+
+  if (userActEntry) {
     res.json({ saved: true });
+  } else {
+    res.json({ saved: false });
   }
 };
 

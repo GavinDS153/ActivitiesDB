@@ -15,6 +15,7 @@
     top: 50%;
     left: 30px;
     transform: translate(0, -50%);
+    color: black;
 }
 
 .navbar-links {
@@ -28,7 +29,7 @@
 .navbar-main {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    background-color: lightblue;
+    background-color: rgb(131, 197, 220);
 }
 
 .navbar-link {
@@ -38,17 +39,15 @@
     justify-content: center;
 }
 
-.navbar-link > * {
+.navbar-text {
     text-align: center;
     font-family: sans-serif;
     font-size: 20px;
     color: black;
     text-decoration: none;
+    font-weight: bold;
 }
 
-.auth-link {
-    font-family: sans-serif;
-    font-size: 20px;
-    color: black;
-    text-decoration: none;
+.navbar-text:hover {
+    color: gray;
 }

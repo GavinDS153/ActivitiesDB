@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { TagsContext } from "../shared/context/tags-context";
+import { ActQueryContext } from "../shared/context/act-query-context";
 import "./SingleTag.css";
 
 const SingleTag = (props) => {
-  const { tagsList, setTagsList } = useContext(TagsContext);
+  const { tagsList, setTagsList } = useContext(ActQueryContext);
 
   const toggleTag = () => {
     setTagsList((oldTags) =>
